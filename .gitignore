@@ -1,0 +1,11 @@
+node_modules/
+keys/*
+.env
+package-lock.json
+fairs-server.pem
+rsa-APKAJZTTVLROZX5KZIAA.pem
+pk-APKAJZTTVLROZX5KZIAA.pem
+
+rootkey.csv
+/profile-picture-uploads
+/resume-uploads

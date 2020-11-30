@@ -1,0 +1,23 @@
+{
+  "name": "uw_sem_fairs_server",
+  "version": "1.0.0",
+  "description": "Server for UW_SEM Fairs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ourJOURNi/UW_SEM_FAIRS_SERVER.git"
+  },
+  "author": "Eddie Taliaferro II",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ourJOURNi/UW_SEM_FAIRS_SERVER/issues"
+  },
+  "homepage": "https://github.com/ourJOURNi/UW_SEM_FAIRS_SERVER#readme",
+  "dependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
