@@ -53,6 +53,8 @@ var volunteerEmail =  nodemailer.createTransport({
 
 
 exports.getFairs = (req, res) => {
+  console.log('Attemtping to get info on all fairs...');
+  
   Fair.find( (err, fairs) => {
     if (err) return res.status(400).send('Error finding fairs');
     return res.status(200).send(fairs);
