@@ -9,7 +9,7 @@ const dotenv                  = require('dotenv');
 // const photoRoute             = require("./routes/photo.route");
 const fairsRoute             = require("./routes/fairs.route");
 
-// const adminFairsRoute        = require("./routes/admin/fairs.route");
+const adminFairsRoute        = require("./routes/admin/fairs.route");
 
 // Configure Environment Variables
 dotenv.config();
@@ -34,7 +34,7 @@ mongoose
   app.use(express.json());
   // app.use("/api/photo", photoRoute);
   app.use("/api/fairs", fairsRoute);
-  // app.use("/api/admin/fairs", adminFairsRoute);
+  app.use("/api/admin/fairs", adminFairsRoute);
 
   const port = process.env.PORT || 4000;
   server = app.listen(port, () => console.log(`Listening on port ${port}...`));
