@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-// var fairsController  = require('../../controller/admin/fairs-controller');
+var fairsController  = require('../../controller/admin/fairs-controller');
 
 router.get('/', fairsController.getFairs );
 
