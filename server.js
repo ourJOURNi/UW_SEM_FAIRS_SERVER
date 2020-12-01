@@ -1,3 +1,4 @@
+const config                  = require("config");
 const express                 = require("express");
 const app                     = express();
 const mongoose                = require("mongoose");
@@ -14,7 +15,7 @@ const fairsRoute             = require("./routes/fairs.route");
 dotenv.config();
 
 console.log(process.env.DB_HOST)
-const uri = 'mongodb+srv://eddietal2:Et061792!@uw-sem-fairs.kl4xq.mongodb.net/UW_SEM_FAIRS?retryWrites=true&w=majority';
+const uri = 'mongodb+srv://eddietal2:gMdIFw3XiXN8XWH0@uw-sem-fairs.kl4xq.mongodb.net/Fairs?retryWrites=true&w=majority';
 
 mongoose
   // For DeprecationWarning:  collection.ensureIndex is deprecated.  Use createIndexes instead.
@@ -22,10 +23,9 @@ mongoose
   .set('useCreateIndex', true)
   .set('useFindAndModify', false)
 
-
   .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
-  .then(() => console.log("Connected to MongoDB...\n"))
+  .then(() => console.log("Connected to Mongoose...\n"))
 
   .catch(err =>
     console.error(err))
