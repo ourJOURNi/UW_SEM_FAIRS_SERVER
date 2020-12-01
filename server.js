@@ -13,7 +13,8 @@ const fairsRoute             = require("./routes/fairs.route");
 // Configure Environment Variables
 dotenv.config();
 
-console.log(process.env.DB_HOST_DEV)
+console.log(process.env.DB_HOST)
+const uri = 'mongodb+srv://eddietal2:Et061792!@uw-sem-fairs.kl4xq.mongodb.net/UW_SEM_FAIRS?retryWrites=true&w=majority';
 
 mongoose
   // For DeprecationWarning:  collection.ensureIndex is deprecated.  Use createIndexes instead.
@@ -21,7 +22,8 @@ mongoose
   .set('useCreateIndex', true)
   .set('useFindAndModify', false)
 
-  .connect(process.env.DB_HOST_DEV, { useNewUrlParser: true, useUnifiedTopology: true })
+
+  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
   .then(() => console.log("Connected to MongoDB...\n"))
 
