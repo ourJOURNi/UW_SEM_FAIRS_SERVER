@@ -3,7 +3,8 @@ const router = express.Router();
 
 var fairsController  = require('../../controller/admin/fairs-controller');
 
-router.get('/', fairsController.getFairs );
+router.get('/', 'wassup' );
+// router.get('/', fairsController.getFairs );
 
 router.post('/fair', fairsController.getFair );
 router.post('/add-fair', fairsController.addFair );
