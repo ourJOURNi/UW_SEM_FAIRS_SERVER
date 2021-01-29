@@ -15,7 +15,6 @@ const adminFairsRoute        = require("./routes/admin/fairs.route");
 dotenv.config();
 
 console.log(process.env.DB_HOST)
-const uri = 'mongodb+srv://eddietal2:gMdIFw3XiXN8XWH0@uw-sem-fairs.kl4xq.mongodb.net/Fairs?retryWrites=true&w=majority';
 
 mongoose
   // For DeprecationWarning:  collection.ensureIndex is deprecated.  Use createIndexes instead.
@@ -23,7 +22,7 @@ mongoose
   .set('useCreateIndex', true)
   .set('useFindAndModify', false)
 
-  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.DB_HOST_DEV, { useNewUrlParser: true, useUnifiedTopology: true })
 
   .then(() => console.log("Connected to Mongoose...\n"))
 
