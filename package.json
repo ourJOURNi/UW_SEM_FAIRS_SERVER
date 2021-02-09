@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ourJOURNi/UW_SEM_FAIRS_SERVER#readme",
   "dependencies": {
+    "aws-sdk": "^2.840.0",
     "config": "^3.3.3",
     "cors": "^2.8.5",
     "d": "^1.0.1",
