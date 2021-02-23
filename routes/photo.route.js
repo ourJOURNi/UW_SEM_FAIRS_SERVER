@@ -6,7 +6,6 @@ const router     = express.Router();
 const fs         = require('fs');
 const path       = require('path');
 const User       = require('../models/user.model');
-const Post      = require('../models/post.model');
 
 // Allows for us to use Environment Files
 dotenv.config();
