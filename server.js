@@ -13,6 +13,8 @@ const adminFairsRoute        = require("./routes/admin/fairs.route");
 
 // Configure Environment Variables
 dotenv.config();
+console.log(process.env.DB_HOST_UWSEM);
+
 
 
 mongoose
@@ -21,7 +23,7 @@ mongoose
   .set('useCreateIndex', true)
   .set('useFindAndModify', false)
 
-  .connect(process.env.DB_HOST_DEV, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.DB_HOST_UWSEM, { useNewUrlParser: true, useUnifiedTopology: true })
 
   .then(() => console.log("Connected to Mongoose...\n"))
 
