@@ -1,6 +1,7 @@
 node_modules/
 keys/*
 .env
+privkey.pem
 package-lock.json
 fairs-server.pem
 rsa-APKAJZTTVLROZX5KZIAA.pem

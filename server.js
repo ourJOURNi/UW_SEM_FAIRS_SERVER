@@ -1,5 +1,7 @@
 const config                  = require("config");
+const fs                      = require('fs')
 const express                 = require("express");
+const https                   = require('https')
 const app                     = express();
 const mongoose                = require("mongoose");
 const cors                    = require('cors');
@@ -25,16 +27,24 @@ mongoose
 
   .connect(process.env.DB_HOST_UWSEM, { useNewUrlParser: true, useUnifiedTopology: true })
 
-  .then(() => console.log("Connected to Mongoose...\n"))
+  .then(() => console.log("Connected to UWSEM FAIRS Server via Mongoose...\n"))
 
   .catch(err =>
     console.error(err))
 
   app.use(cors());
   app.use(express.json());
+  app.use("api/", (res, req) => {
+    return res.send('wassup')
+  }
+  )
   app.use("/api/photo", photoRoute);
   app.use("/api/fairs", fairsRoute);
   app.use("/api/admin/fairs", adminFairsRoute);
 
   const port = process.env.PORT || 4000;
-  server = app.listen(port, () => console.log(`Listening on port ${port}...`));
+  app.listen(port, () => console.log(`Listening on port ${port}...`));
+  // https.createServer({
+  //   key: fs.readFileSync('./privkey.pem'),
+  //   // cert: fs.readFileSync(''),
+  // }, app).listen(port, () => console.log(`Listening on port ${port}...`));
