@@ -21,13 +21,13 @@ var partnerEmail =  nodemailer.createTransport({
 });
 
 var studentEmail =  nodemailer.createTransport({
-  service: 'gmail',
+  service: 'Gmail',
   auth: {
-        user: 'info@findyourfuture.org',
-        pass: 'findyourfuture1*'
+        user: 'eddielacrosse2@gmail.com',
+        pass: 'taliaferro2'
     },
-    // debug: true, // show debug output
-    // logger: true // log information in console
+    debug: true, // show debug output
+    logger: true // log information in console
 });
 
 var chaperoneEmail =  nodemailer.createTransport({
@@ -124,15 +124,15 @@ exports.registerStudent = (req, res) => {
 
     // Search for any matching email addresses for students that have already resigtered for the fair.
 
-    for(let i = 0; i < fairStudents.length; i++) {
+    // for(let i = 0; i < fairStudents.length; i++) {
 
-        // If User enters an email that has already been registered.
-        if ( fairStudents[i].email === student.email) {
-          console.log('A Student already has that email address')
-          // An Error Validation Message would go nice here. Toast? Alert?
-          return res.status(401).json('A Student already has that email address');
-        }
-    }
+    //     // If User enters an email that has already been registered.
+    //     if ( fairStudents[i].email === student.email) {
+    //       console.log('A Student already has that email address')
+    //       // An Error Validation Message would go nice here. Toast? Alert?
+    //       return res.status(401).json('A Student already has that email address');
+    //     }
+    // }
 
     // Divide students into seperate arrays based on their school
     let studentsInSchool = []
