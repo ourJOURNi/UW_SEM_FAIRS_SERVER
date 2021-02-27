@@ -11,7 +11,6 @@ const dotenv                  = require('dotenv');
 const photoRoute             = require("./routes/photo.route");
 const fairsRoute             = require("./routes/fairs.route");
 
-const adminFairsRoute        = require("./routes/admin/fairs.route");
 
 // Configure Environment Variables
 dotenv.config();
@@ -34,17 +33,8 @@ mongoose
 
   app.use(cors());
   app.use(express.json());
-  app.use("api/", (res, req) => {
-    return res.send('wassup')
-  }
-  )
   app.use("/api/photo", photoRoute);
   app.use("/api/fairs", fairsRoute);
-  app.use("/api/admin/fairs", adminFairsRoute);
 
   const port = process.env.PORT || 4000;
   app.listen(port, () => console.log(`Listening on port ${port}...`));
-  // https.createServer({
-  //   key: fs.readFileSync('./privkey.pem'),
-  //   // cert: fs.readFileSync(''),
-  // }, app).listen(port, () => console.log(`Listening on port ${port}...`));

@@ -44,6 +44,7 @@ const uploadPartner = multer({
 
     // Makes sure that the image file is either a .jpg, .jpeg, or .png file.
     if( ext === '.jpg' || ext === '.jpeg' || ext === '.png') {
+       console.log('Extension: ' + ext);
        console.log('The file extention is correct. Good Job!')
     } else {
       return callback(new Error('Only jpg, jpeg, or png image files are allowed.'))
