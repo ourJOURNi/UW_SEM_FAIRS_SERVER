@@ -23,8 +23,8 @@ var partnerEmail =  nodemailer.createTransport({
 var studentEmail =  nodemailer.createTransport({
   service: 'gmail',
   auth: {
-        user: 'eddielacrosse2@gmail.com',
-        pass: 'taliaferro2'
+        user: 'info@findyourfuture.org',
+        pass: 'findyourfuture1*'
     },
     // debug: true, // show debug output
     // logger: true // log information in console
