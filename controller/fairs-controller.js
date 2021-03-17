@@ -23,8 +23,8 @@ var partnerEmail =  nodemailer.createTransport({
 var studentEmail =  nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-        user: 'eddielacrosse2@gmail.com',
-        pass: 'taliaferro2'
+        user: 'info@findyourfuturesem.org',
+        pass: 'Loveyourfuture1*'
     },
     debug: true, // show debug output
     logger: true // log information in console
@@ -166,7 +166,7 @@ exports.registerStudent = (req, res) => {
       fairTime = format(fair.date, 'hh:mm a')
 
       const studentMailWaitlistOptions = {
-        from: 'eddielacrosse2@gmail.com', // sender address
+        from: 'info@findyourfuturesem.org', // sender address
         to: `${email}`, // list of receivers
         subject: `You have been waitlisted for ${fair.title}`,
         html: `
