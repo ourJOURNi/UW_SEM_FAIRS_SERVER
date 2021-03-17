@@ -33,11 +33,6 @@ mongoose
 
   app.use(cors());
   app.use(express.json());
-  app.use("/api", (req, res) => {
-    console.log('Fairs API GET Works!');
-    res.status(200).json({msg: 'It worked!'})
-  }
-  );
   app.use("/api/photo", photoRoute);
   app.use("/api/fairs", fairsRoute);
 
