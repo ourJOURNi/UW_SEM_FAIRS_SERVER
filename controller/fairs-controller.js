@@ -77,7 +77,8 @@ exports.getFair = (req, res) => {
 }
 
 exports.registerStudent = (req, res) => {
-  id = req.body.id
+  console.log(req.body);
+  id = req.body.fairID
   name = req.body.name
   email = req.body.email,
   school = req.body.school,
@@ -117,7 +118,9 @@ exports.registerStudent = (req, res) => {
     (err, fair) => {
     if (err) return res.status(400).send('Error finding fair');
 
-    let fairStudents = Object.values(fair.students);
+    // console.log(fair)
+
+    // let fairStudents = Object.values(fair);
 
     console.log('student email');
     console.log(student.email);
@@ -136,7 +139,7 @@ exports.registerStudent = (req, res) => {
 
     // Divide students into seperate arrays based on their school
     let studentsInSchool = []
-    for (let s of fairStudents) {
+    for (let s of fair.students) {
       if (student.school === s.school) {
         studentsInSchool.push(s.school);
       }
@@ -165,57 +168,57 @@ exports.registerStudent = (req, res) => {
       fairDate = format(fair.date, 'MMMM dd, yyyy'),
       fairTime = format(fair.date, 'hh:mm a')
 
-      const studentMailWaitlistOptions = {
-        from: 'info@findyourfuturesem.org', // sender address
-        to: `${email}`, // list of receivers
-        subject: `You have been waitlisted for ${fair.title}`,
-        html: `
-        <h3>Hi ${student.name}!<br>
-        You have been waitlisted as a Student for ${fair.title} on the date of ${student.dateRegistered} at ${student.timeRegistered}.</h3>
-        <br>
-        <h1>Fair Details</h1>
-        <h3 style="color: #999;"> Date: ${fairDate}</h3>
-        <h3 style="color: #999;"> Time: ${fairTime}</h3>
-        <p>${fair.summary}</p>
-        <p>Title: ${fair.title}</p>
-        <p>Address: ${fair.address}</p>
-        <p>City: ${fair.city}</p>
-        <p>State: ${fair.state}</p>
-        <p>Zip: ${fair.zip}</p>
-        <p>${fair.studentDescription}</p>
+      // const studentMailWaitlistOptions = {
+      //   from: 'info@findyourfuturesem.org', // sender address
+      //   to: `${email}`, // list of receivers
+      //   subject: `You have been waitlisted for ${fair.title}`,
+      //   html: `
+      //   <h3>Hi ${student.name}!<br>
+      //   You have been waitlisted as a Student for ${fair.title} on the date of ${student.dateRegistered} at ${student.timeRegistered}.</h3>
+      //   <br>
+      //   <h1>Fair Details</h1>
+      //   <h3 style="color: #999;"> Date: ${fairDate}</h3>
+      //   <h3 style="color: #999;"> Time: ${fairTime}</h3>
+      //   <p>${fair.summary}</p>
+      //   <p>Title: ${fair.title}</p>
+      //   <p>Address: ${fair.address}</p>
+      //   <p>City: ${fair.city}</p>
+      //   <p>State: ${fair.state}</p>
+      //   <p>Zip: ${fair.zip}</p>
+      //   <p>${fair.studentDescription}</p>
 
-        <h1 style="margin-top: 100px;">${student.name}'s Details</h1>
-        <p>Email: ${student.email}</p>
-        <p>School: ${student.school}</p>
-        <p>Phone: ${student.phone}</p>
-        <p>Gender: ${student.gender}</p>
-        <p>Lunch: ${student.lunch}</p>
+      //   <h1 style="margin-top: 100px;">${student.name}'s Details</h1>
+      //   <p>Email: ${student.email}</p>
+      //   <p>School: ${student.school}</p>
+      //   <p>Phone: ${student.phone}</p>
+      //   <p>Gender: ${student.gender}</p>
+      //   <p>Lunch: ${student.lunch}</p>
 
-        <p>Interests: ${student.interests}</p>
-        <p>Question 1: ${student.question1.question}</p>
-        <p>Answer: ${student.question1.answer}</p>
-        <p>Question 2: ${student.question2.question}</p>
-        <p>Answer: ${student.question2.answer}</p>
-        <p>Question 3: ${student.question3.question}</p>
-        <p>Answer: ${student.question3.answer}</p>
-        <p>Question 4: ${student.question4.question}</p>
-        <p>Answer: ${student.question4.answer}</p>
-        <p>Question 5: ${student.question5.question}</p>
-        <p>Answer: ${student.question5.answer}</p>
+      //   <p>Interests: ${student.interests}</p>
+      //   <p>Question 1: ${student.question1.question}</p>
+      //   <p>Answer: ${student.question1.answer}</p>
+      //   <p>Question 2: ${student.question2.question}</p>
+      //   <p>Answer: ${student.question2.answer}</p>
+      //   <p>Question 3: ${student.question3.question}</p>
+      //   <p>Answer: ${student.question3.answer}</p>
+      //   <p>Question 4: ${student.question4.question}</p>
+      //   <p>Answer: ${student.question4.answer}</p>
+      //   <p>Question 5: ${student.question5.question}</p>
+      //   <p>Answer: ${student.question5.answer}</p>
 
-        <hr>
-        <p>If you need to change any of this information, please send an email to [enter email here] </p>
-        `
-      }
+      //   <hr>
+      //   <p>If you need to change any of this information, please send an email to [enter email here] </p>
+      //   `
+      // }
 
-      studentEmail.sendMail(studentMailWaitlistOptions, function (err, info) {
-        if(err)
-          console.log(err)
-        else {
-          console.log(info);
-          return  res.status(200).json(fair);
-        }
-      });
+      // studentEmail.sendMail(studentMailWaitlistOptions, function (err, info) {
+      //   if(err)
+      //     console.log(err)
+      //   else {
+      //     console.log(info);
+      //     return  res.status(200).json(fair);
+      //   }
+      // });
 
     });
 
@@ -237,58 +240,58 @@ exports.registerStudent = (req, res) => {
         fairDate = format(fair.date, 'MMMM dd, yyyy'),
         fairTime = format(fair.date, 'hh:mm a')
 
-        const studentMailOptions = {
-          from: 'eddielacrosse2@gmail.com', // sender address
-          to: `${email}`, // list of receivers
-          subject: `You have been registered for ${fair.title}`,
-          html: `
-          <h3>Hi ${student.name}!<br>
-          You have been waitlisted as a Student for ${fair.title} on the date of ${student.dateRegistered} at ${student.timeRegistered}.</h3>
-          <br>
-          <h1>Fair Details</h1>
-          <h3 style="color: #999;"> Date: ${fairDate}</h3>
-          <h3 style="color: #999;"> Time: ${fairTime}</h3>
-          <p>${fair.summary}</p>
-          <p>Title: ${fair.title}</p>
-          <p>Address: ${fair.address}</p>
-          <p>City: ${fair.city}</p>
-          <p>State: ${fair.state}</p>
-          <p>Zip: ${fair.zip}</p>
-          <p>${fair.description}</p>
+        // const studentMailOptions = {
+        //   from: 'eddielacrosse2@gmail.com', // sender address
+        //   to: `${email}`, // list of receivers
+        //   subject: `You have been registered for ${fair.title}`,
+        //   html: `
+        //   <h3>Hi ${student.name}!<br>
+        //   You have been waitlisted as a Student for ${fair.title} on the date of ${student.dateRegistered} at ${student.timeRegistered}.</h3>
+        //   <br>
+        //   <h1>Fair Details</h1>
+        //   <h3 style="color: #999;"> Date: ${fairDate}</h3>
+        //   <h3 style="color: #999;"> Time: ${fairTime}</h3>
+        //   <p>${fair.summary}</p>
+        //   <p>Title: ${fair.title}</p>
+        //   <p>Address: ${fair.address}</p>
+        //   <p>City: ${fair.city}</p>
+        //   <p>State: ${fair.state}</p>
+        //   <p>Zip: ${fair.zip}</p>
+        //   <p>${fair.description}</p>
 
-          <h1 style="margin-top: 100px;">${student.name}'s Details</h1>
-          <p>Email: ${student.email}</p>
-          <p>School: ${student.school}</p>
-          <p>Phone: ${student.phone}</p>
-          <p>Gender: ${student.gender}</p>
-          <p>Lunch: ${student.lunch}</p>
+        //   <h1 style="margin-top: 100px;">${student.name}'s Details</h1>
+        //   <p>Email: ${student.email}</p>
+        //   <p>School: ${student.school}</p>
+        //   <p>Phone: ${student.phone}</p>
+        //   <p>Gender: ${student.gender}</p>
+        //   <p>Lunch: ${student.lunch}</p>
 
-          <p>Interests: ${student.interests}</p>
-          <p>Question 1: ${student.question1.question}</p>
-          <p>Answer: ${student.question1.answer}</p>
-          <p>Question 2: ${student.question2.question}</p>
-          <p>Answer: ${student.question2.answer}</p>
-          <p>Question 3: ${student.question3.question}</p>
-          <p>Answer: ${student.question3.answer}</p>
-          <p>Question 4: ${student.question4.question}</p>
-          <p>Answer: ${student.question4.answer}</p>
-          <p>Question 5: ${student.question5.question}</p>
-          <p>Answer: ${student.question5.answer}</p>
+        //   <p>Interests: ${student.interests}</p>
+        //   <p>Question 1: ${student.question1.question}</p>
+        //   <p>Answer: ${student.question1.answer}</p>
+        //   <p>Question 2: ${student.question2.question}</p>
+        //   <p>Answer: ${student.question2.answer}</p>
+        //   <p>Question 3: ${student.question3.question}</p>
+        //   <p>Answer: ${student.question3.answer}</p>
+        //   <p>Question 4: ${student.question4.question}</p>
+        //   <p>Answer: ${student.question4.answer}</p>
+        //   <p>Question 5: ${student.question5.question}</p>
+        //   <p>Answer: ${student.question5.answer}</p>
 
-          <hr>
-          <p>If you need to change any of this information, please send an email to [enter email here] </p>
-          `
-        }
+        //   <hr>
+        //   <p>If you need to change any of this information, please send an email to [enter email here] </p>
+        //   `
+        // }
 
-        studentEmail.sendMail(studentMailOptions, function (err, info) {
-          if(err)
-            console.log(err)
-          else {
-            console.log(info);
-            return  res.status(200).json(fair);
+        // studentEmail.sendMail(studentMailOptions, function (err, info) {
+        //   if(err)
+        //     console.log(err)
+        //   else {
+        //     console.log(info);
+        //     return  res.status(200).json(fair);
 
-          }
-        });
+        //   }
+        // });
       });
     }
   });
@@ -388,7 +391,8 @@ exports.registerChaperone = (req, res) => {
 }
 
 exports.registerPartner = (req, res) => {
-
+  
+  console.log('Attempting to Register Partner ...')
   id = req.body.id
   name = req.body.name
   email = req.body.email,
@@ -418,74 +422,76 @@ exports.registerPartner = (req, res) => {
   }
 
   let fairPartner = FairPartner(partner)
+  console.log(fairPartner);
+  return;
 
-  Fair.findOneAndUpdate(
-    {_id: id},
-    { $push: { partners: fairPartner} },
-    async (err, fair) => {
+  // Fair.findOneAndUpdate(
+  //   {_id: id},
+  //   { $push: { partners: fairPartner} },
+  //   async (err, fair) => {
+  //     console.log(fair.partners)
+  //     let fairPartners = Object.values(fair.partners);
 
-      let fairPartners = Object.values(fair.partners);
+  //     // Saerch for any matching email addresses
+  //     for(let i = 0; i < fairPartners.length; i++) {
+  //       fairPartners
+  //     // If User enters an email that has already been registered.
+  //     if ( fairPartners[i].email === partner.email) {
+  //       console.log('A Partner already has that email address')
+  //       // An Error Validation Message would go nice here. Toast? Alert?
+  //       return res.status(401).json('A Partner already has that email address');
+  //     }
+  //   }
 
-      // Saerch for any matching email addresses
-      for(let i = 0; i < fairPartners.length; i++) {
-        fairPartners
-      // If User enters an email that has already been registered.
-      if ( fairPartners[i].email === partner.email) {
-        console.log('A Partner already has that email address')
-        // An Error Validation Message would go nice here. Toast? Alert?
-        return res.status(401).json('A Partner already has that email address');
-      }
-    }
+  //   if (err) return await res.status(400).send('Error finding partners');
 
-    if (err) return await res.status(400).send('Error finding partners');
+  //   if (!fair) return await res.status(400).send('There were no partners with that id');
 
-    if (!fair) return await res.status(400).send('There were no partners with that id');
+  //   await console.log(fair);
 
-    await console.log(fair);
+  //   fairDate = format(fair.date, 'MMMM dd, yyyy'),
+  //   fairTime = format(fair.date, 'hh:mm a')
 
-    fairDate = format(fair.date, 'MMMM dd, yyyy'),
-    fairTime = format(fair.date, 'hh:mm a')
+  //   const partnerMailOptions = {
+  //     from: 'eddielacrosse2@gmail.com', // sender address
+  //     to: `${partner.email}`, // list of receivers
+  //     subject: `You have registered for ${fair.title}`,
+  //     html: `
+  //     <h3>Hi ${partner.name}!<br>
+  //     You have registered as a Partner for ${fair.title} on the date of ${partner.dateRegistered} at ${partner.timeRegistered}.</h3>
+  //     <br>
 
-    const partnerMailOptions = {
-      from: 'eddielacrosse2@gmail.com', // sender address
-      to: `${partner.email}`, // list of receivers
-      subject: `You have registered for ${fair.title}`,
-      html: `
-      <h3>Hi ${partner.name}!<br>
-      You have registered as a Partner for ${fair.title} on the date of ${partner.dateRegistered} at ${partner.timeRegistered}.</h3>
-      <br>
+  //     <h1>Fair Details</h1>
+  //     <h3 style="color: #999;"> Date: ${fairDate}</h3>
+  //     <h3 style="color: #999;"> Time: ${fairTime}</h3>
+  //     <p>${fair.summary}</p>
+  //     <p>Title: ${fair.title}</p>
+  //     <p>Address: ${fair.address}</p>
+  //     <p>City: ${fair.city}</p>
+  //     <p>State: ${fair.state}</p>
+  //     <p>Zip: ${fair.zip}</p>
+  //     <p>${fair.description}</p>
 
-      <h1>Fair Details</h1>
-      <h3 style="color: #999;"> Date: ${fairDate}</h3>
-      <h3 style="color: #999;"> Time: ${fairTime}</h3>
-      <p>${fair.summary}</p>
-      <p>Title: ${fair.title}</p>
-      <p>Address: ${fair.address}</p>
-      <p>City: ${fair.city}</p>
-      <p>State: ${fair.state}</p>
-      <p>Zip: ${fair.zip}</p>
-      <p>${fair.description}</p>
+  //     <h1 style="margin-top: 100px;">${partner.name}'s Details</h1>
+  //     <p>Email: ${partner.email}</p>
+  //     <p>Company: ${partner.company}</p>
+  //     <p>Phone: ${partner.phone}</p>
+  //     <p>Colleagues: ${partner.colleagues}</p>
+  //     <p>Logo: ${partner.logo}</p>
 
-      <h1 style="margin-top: 100px;">${partner.name}'s Details</h1>
-      <p>Email: ${partner.email}</p>
-      <p>Company: ${partner.company}</p>
-      <p>Phone: ${partner.phone}</p>
-      <p>Colleagues: ${partner.colleagues}</p>
-      <p>Logo: ${partner.logo}</p>
+  //     <hr>
+  //     <p>If you need to change any of this information, please send an email to [enter email here] </p>
+  //     `
+  //   }
 
-      <hr>
-      <p>If you need to change any of this information, please send an email to [enter email here] </p>
-      `
-    }
-
-    await partnerEmail.sendMail(partnerMailOptions, function (err, info) {
-      if(err)
-        console.log(err)
-      else
-        console.log(info);
-    });
-    return await res.status(200).json(partner);
-  })
+  //   await partnerEmail.sendMail(partnerMailOptions, function (err, info) {
+  //     if(err)
+  //       console.log(err)
+  //     else
+  //       console.log(info);
+  //   });
+  //   return await res.status(200).json(partner);
+  // })
 }
 
 exports.registerVolunteer = (req, res) => {
